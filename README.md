@@ -1,1 +1,1 @@
-# advent-of-of-2023
+# advent-of-code-2023
