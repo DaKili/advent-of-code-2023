@@ -26,7 +26,7 @@ func ReadInput(inputFileName string) []string {
 
 type WorkerFunc[T any] func(subset []T)
 
-func ParallelFor[T any](data []T, numGoroutines int, work WorkerFunc[T]) {
+func ParallelForStatic[T any](data []T, numGoroutines int, work WorkerFunc[T]) {
 	var wg sync.WaitGroup
 	chunkSize := (len(data) + numGoroutines - 1) / numGoroutines
 

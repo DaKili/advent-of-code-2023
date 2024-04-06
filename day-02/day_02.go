@@ -26,7 +26,7 @@ func Task1() {
 
 	possibleGames := 0
 	// Parallelization has barely any improvement due to overhead.
-	utils.ParallelFor(input, 4, func(subset []string) {
+	utils.ParallelForStatic(input, 4, func(subset []string) {
 		possibleGames += getPossibleGamesSum(subset, redMax, greenMax, blueMax)
 	})
 

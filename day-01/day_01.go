@@ -32,7 +32,7 @@ func Task1() {
 		"8": "8",
 		"9": "9",
 	}
-	utils.ParallelFor(input, Parallel_parts, func(subset []string) {
+	utils.ParallelForStatic(input, Parallel_parts, func(subset []string) {
 		sum += processLines(subset, dictionary)
 	})
 
@@ -61,7 +61,7 @@ func Task2() {
 	}
 
 	sum := 0
-	utils.ParallelFor(input, Parallel_parts, func(subset []string) {
+	utils.ParallelForStatic(input, Parallel_parts, func(subset []string) {
 		sum += processLines(subset, dictionary)
 	})
 	fmt.Printf("Solution: %v\n", sum)
