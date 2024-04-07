@@ -36,6 +36,9 @@ func Task1() {
 func getPossibleGamesSum(lines []string, redMax, greenMax, blueMax int) int {
 	gameIdSum := 0
 	for _, line := range lines {
+		if line == "" {
+			continue
+		}
 		gameId, rest := cutGameId(line)
 		draws := strings.Split(rest, ";")
 		if isGamePossible(draws, redMax, greenMax, blueMax) {
