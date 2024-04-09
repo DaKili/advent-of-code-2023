@@ -11,13 +11,12 @@ import (
 var InputFileName = "day-01/input.txt"
 var Parallel_parts = 8
 
-func Task1() {
-	defer utils.Timer("Day-01 Task1")()
-
+func Task1() (string, int) {
+	name := "Day01 Task1"
 	input := utils.ReadInput(InputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", InputFileName)
-		return
+		return name, 0
 	}
 
 	sum := 0
@@ -36,16 +35,15 @@ func Task1() {
 		sum += processLines(subset, dictionary)
 	})
 
-	fmt.Printf("Solution: %v\n", sum)
+	return name, sum
 }
 
-func Task2() {
-	defer utils.Timer("Day-01 Task2")()
-
+func Task2() (string, int) {
+	name := "Day01 Task2"
 	input := utils.ReadInput(InputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", InputFileName)
-		return
+		return name, 0
 	}
 
 	var dictionary = map[string]string{
@@ -64,7 +62,8 @@ func Task2() {
 	utils.ParallelForStatic(input, Parallel_parts, func(subset []string) {
 		sum += processLines(subset, dictionary)
 	})
-	fmt.Printf("Solution: %v\n", sum)
+
+	return name, sum
 }
 
 func processLines(lines []string, dictionary map[string]string) int {

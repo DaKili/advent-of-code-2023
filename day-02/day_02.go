@@ -10,8 +10,8 @@ import (
 
 var inputFileName = "day-02/input.txt"
 
-func Task1() {
-	defer utils.Timer("Day-02 Task1")()
+func Task1() (string, int) {
+	name := "Day02 Task1"
 	const (
 		redMax   = 12
 		greenMax = 13
@@ -21,7 +21,7 @@ func Task1() {
 	input := utils.ReadInput(inputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return
+		return name, 0
 	}
 
 	possibleGames := 0
@@ -30,7 +30,7 @@ func Task1() {
 		possibleGames += getPossibleGamesSum(subset, redMax, greenMax, blueMax)
 	})
 
-	fmt.Printf("Solution: %v\n", possibleGames)
+	return name, possibleGames
 }
 
 func getPossibleGamesSum(lines []string, redMax, greenMax, blueMax int) int {
@@ -77,12 +77,12 @@ func isGamePossible(draws []string, redMax, greenMax, blueMax int) bool {
 	return true
 }
 
-func Task2() {
-	defer utils.Timer("Day-02 Task2")()
+func Task2() (string, int) {
+	name := "Day02 Task2"
 	input := utils.ReadInput(inputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return
+		return name, 0
 	}
 
 	possibleGames := 0
@@ -91,7 +91,7 @@ func Task2() {
 		possibleGames += getPowerOfGamesSum(subset)
 	})
 
-	fmt.Printf("Solution: %v\n", possibleGames)
+	return name, possibleGames
 }
 
 func getPowerOfGamesSum(lines []string) int {
