@@ -8,10 +8,7 @@ import (
 	"github.com/dakili/advent-of-code-2023/utils"
 )
 
-var inputFileName = "day-02/input.txt"
-
-func Task1() (string, int) {
-	name := "Day02 Task1"
+func Task1(inputFileName string, parallelDegree int) int {
 	const (
 		redMax   = 12
 		greenMax = 13
@@ -21,16 +18,16 @@ func Task1() (string, int) {
 	input := utils.ReadInput(inputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return name, 0
+		return 0
 	}
 
 	possibleGames := 0
 	// Parallelization has barely any improvement due to overhead.
-	utils.ParallelForStatic(input, 4, func(subset []string) {
+	utils.ParallelForStatic(input, parallelDegree, func(subset []string) {
 		possibleGames += getPossibleGamesSum(subset, redMax, greenMax, blueMax)
 	})
 
-	return name, possibleGames
+	return possibleGames
 }
 
 func getPossibleGamesSum(lines []string, redMax, greenMax, blueMax int) int {
@@ -77,21 +74,21 @@ func isGamePossible(draws []string, redMax, greenMax, blueMax int) bool {
 	return true
 }
 
-func Task2() (string, int) {
-	name := "Day02 Task2"
+func Task2(inputFileName string, parallelDegree int) int {
 	input := utils.ReadInput(inputFileName)
+
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return name, 0
+		return 0
 	}
 
 	possibleGames := 0
 	// Parallelization has barely any improvement due to overhead.
-	utils.ParallelForStatic(input, 4, func(subset []string) {
+	utils.ParallelForStatic(input, parallelDegree, func(subset []string) {
 		possibleGames += getPowerOfGamesSum(subset)
 	})
 
-	return name, possibleGames
+	return possibleGames
 }
 
 func getPowerOfGamesSum(lines []string) int {

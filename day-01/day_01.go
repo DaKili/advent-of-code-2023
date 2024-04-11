@@ -8,18 +8,13 @@ import (
 	"github.com/dakili/advent-of-code-2023/utils"
 )
 
-var InputFileName = "day-01/input.txt"
-var Parallel_parts = 8
-
-func Task1() (string, int) {
-	name := "Day01 Task1"
-	input := utils.ReadInput(InputFileName)
+func Task1(inputFileName string, parallelDegree int) int {
+	input := utils.ReadInput(inputFileName)
 	if input == nil {
-		fmt.Printf("Could not read %s\n", InputFileName)
-		return name, 0
+		fmt.Printf("Could not read %s\n", inputFileName)
+		return 0
 	}
 
-	sum := 0
 	dictionary := map[string]string{
 		"1": "1",
 		"2": "2",
@@ -31,19 +26,20 @@ func Task1() (string, int) {
 		"8": "8",
 		"9": "9",
 	}
-	utils.ParallelForStatic(input, Parallel_parts, func(subset []string) {
+
+	sum := 0
+	utils.ParallelForStatic(input, parallelDegree, func(subset []string) {
 		sum += processLines(subset, dictionary)
 	})
 
-	return name, sum
+	return sum
 }
 
-func Task2() (string, int) {
-	name := "Day01 Task2"
-	input := utils.ReadInput(InputFileName)
+func Task2(inputFileName string, parallelDegree int) int {
+	input := utils.ReadInput(inputFileName)
 	if input == nil {
-		fmt.Printf("Could not read %s\n", InputFileName)
-		return name, 0
+		fmt.Printf("Could not read %s\n", inputFileName)
+		return 0
 	}
 
 	var dictionary = map[string]string{
@@ -59,11 +55,11 @@ func Task2() (string, int) {
 	}
 
 	sum := 0
-	utils.ParallelForStatic(input, Parallel_parts, func(subset []string) {
+	utils.ParallelForStatic(input, parallelDegree, func(subset []string) {
 		sum += processLines(subset, dictionary)
 	})
 
-	return name, sum
+	return sum
 }
 
 func processLines(lines []string, dictionary map[string]string) int {

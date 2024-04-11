@@ -1,4 +1,4 @@
-package day03
+package day_03
 
 import (
 	"fmt"
@@ -7,8 +7,6 @@ import (
 
 	"github.com/dakili/advent-of-code-2023/utils"
 )
-
-var inputFileName = "day-03/input.txt"
 
 type enginePart struct {
 	start int
@@ -22,36 +20,34 @@ type enginePartLine struct {
 	gearIndex   []int
 }
 
-func Task1() (string, int) {
+func Task1(inputFileName string, parallelDeree int) int {
 	// NEED TO PARALLELIZE
-	name := "Day03 Task1"
 	input := utils.ReadInput(inputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return name, 0
+		return 0
 	}
 
 	enginePartLines := createEnginePartLines(input)
 
 	sum := getEnginePartSum(enginePartLines, len(input))
 
-	return name, sum
+	return sum
 }
 
-func Task2() (string, int) {
+func Task2(inputFileName string, parallelDeree int) int {
 	// NEED TO PARALLELIZE
-	name := "Day03 Task2"
 	input := utils.ReadInput(inputFileName)
 	if input == nil {
 		fmt.Printf("Could not read %s\n", inputFileName)
-		return name, 0
+		return 0
 	}
 
 	enginePartLines := createEnginePartLines(input)
 
 	sum := getGearEnginePartSum(enginePartLines, len(input))
 
-	return name, sum
+	return sum
 }
 
 func getEnginePartSum(enginePartLines []enginePartLine, inputLength int) int {
